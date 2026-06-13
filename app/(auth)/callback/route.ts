@@ -11,7 +11,10 @@ type ProfileCompletionRow = {
   is_complete: boolean | null;
 };
 
-async function getRedirectPath(userId: string, accessToken: string): Promise<string> {
+async function getRedirectPath(
+  userId: string,
+  accessToken: string,
+): Promise<string> {
   const insforge = createServerClient({ accessToken });
   const { data, error } = await insforge.database
     .from("profiles")

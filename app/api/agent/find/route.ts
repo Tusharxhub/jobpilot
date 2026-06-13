@@ -102,8 +102,7 @@ ${jobList}`,
     const parsed = JSON.parse(raw) as { results?: ScoredResult[] };
     return jobs.map((job, i) => {
       const scored =
-        parsed.results?.find((r) => r.jobId === job.id) ??
-        parsed.results?.[i];
+        parsed.results?.find((r) => r.jobId === job.id) ?? parsed.results?.[i];
       return (
         scored ?? {
           jobId: job.id,

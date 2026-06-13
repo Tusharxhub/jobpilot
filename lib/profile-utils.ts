@@ -27,7 +27,10 @@ export function calculateCompletion(data: CompletionInput): CompletionResult {
     { field: "EXPERIENCE LEVEL", filled: !!data.experience_level },
     { field: "YEARS EXP", filled: data.years_experience !== null },
     { field: "SKILLS", filled: (data.skills ?? []).length > 0 },
-    { field: "WORK EXPERIENCE", filled: (data.work_experience ?? []).length > 0 },
+    {
+      field: "WORK EXPERIENCE",
+      filled: (data.work_experience ?? []).length > 0,
+    },
     { field: "EDUCATION", filled: !!data.education?.degree },
   ];
 

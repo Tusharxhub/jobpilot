@@ -24,7 +24,8 @@ export function formatDate(dateString: string): string {
   const diffDays = Math.floor(diffHours / 24);
 
   if (diffHours < 1) return "Just now";
-  if (diffHours < 24) return `${diffHours} hour${diffHours === 1 ? "" : "s"} ago`;
+  if (diffHours < 24)
+    return `${diffHours} hour${diffHours === 1 ? "" : "s"} ago`;
   if (diffDays === 1) return "Yesterday";
   if (diffDays < 7) return `${diffDays} days ago`;
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });

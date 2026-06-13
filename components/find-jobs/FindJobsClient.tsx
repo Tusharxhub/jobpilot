@@ -3,7 +3,11 @@
 import { useState, useEffect, useCallback } from "react";
 
 import { SearchControls } from "@/components/find-jobs/SearchControls";
-import { JobFilters, type MatchFilter, type SortOption } from "@/components/find-jobs/JobFilters";
+import {
+  JobFilters,
+  type MatchFilter,
+  type SortOption,
+} from "@/components/find-jobs/JobFilters";
 import { JobsTable } from "@/components/find-jobs/JobsTable";
 import { JobsPagination } from "@/components/find-jobs/JobsPagination";
 import type { Job } from "@/types";
@@ -81,7 +85,9 @@ export function FindJobsClient({ initialJobs, initialTotalCount }: Props) {
         error?: string;
       };
       if (!res.ok || !json.success) {
-        setSuccessMessage(json.error ?? "Something went wrong. Please try again.");
+        setSuccessMessage(
+          json.error ?? "Something went wrong. Please try again.",
+        );
         return;
       }
       if (json.data) {
@@ -90,7 +96,9 @@ export function FindJobsClient({ initialJobs, initialTotalCount }: Props) {
         await fetchJobs(filterSearch, matchFilter, sortOption, 1);
       }
     } catch {
-      setSuccessMessage("Network error. Please check your connection and try again.");
+      setSuccessMessage(
+        "Network error. Please check your connection and try again.",
+      );
     } finally {
       setIsSearching(false);
     }

@@ -8,7 +8,11 @@ type Props = {
 
 export function Logo({ href = "/", priority = false }: Props) {
   return (
-    <Link href={href} aria-label="JobPilot home" className="inline-flex items-center">
+    <Link
+      href={href}
+      aria-label="JobPilot home"
+      className="inline-flex items-center"
+    >
       <Image
         src="/logo.png"
         alt="JobPilot"

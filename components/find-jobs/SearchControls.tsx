@@ -9,7 +9,11 @@ type Props = {
   successMessage: string | null;
 };
 
-export function SearchControls({ onSearch, isSearching, successMessage }: Props) {
+export function SearchControls({
+  onSearch,
+  isSearching,
+  successMessage,
+}: Props) {
   const [jobTitle, setJobTitle] = useState("");
   const [location, setLocation] = useState("");
 
@@ -74,7 +78,9 @@ export function SearchControls({ onSearch, isSearching, successMessage }: Props)
         {successMessage && (
           <div className="mt-4 flex items-center gap-2 rounded-lg border border-success-light bg-success-lightest px-4 py-2.5">
             <span className="text-base">✨</span>
-            <p className="text-sm font-medium text-success-foreground">{successMessage}</p>
+            <p className="text-sm font-medium text-success-foreground">
+              {successMessage}
+            </p>
           </div>
         )}
       </form>

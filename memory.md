@@ -5,6 +5,7 @@ Last updated: 2026-06-05 22:30 CEST
 ## What was built
 
 Feature 14 — Dashboard Page Full UI (mock data):
+
 - `components/dashboard/StatsBar.tsx` — 4 stat cards with green trend badge (TrendingUp icon), responsive 4-col grid
 - `components/dashboard/RecentActivity.tsx` — activity list with colored dot indicators (green = job_found, blue = researched)
 - `components/dashboard/AnalyticsCharts.tsx` — 3 named client-component exports: `CompanyResearchChart` (blue BarChart), `JobsOverTimeChart` (purple AreaChart with gradient fill), `MatchDistributionChart` (green BarChart). All use `var(--color-*)` CSS variables inside recharts props.
@@ -12,10 +13,12 @@ Feature 14 — Dashboard Page Full UI (mock data):
 - `app/dashboard/page.tsx` — wired all components in the design layout: stats row → activity + research chart row → jobs over time + match distribution row
 
 Feature 15 — Stats Bar Real Data:
+
 - `StatsBar` refactored to accept 4 props: `totalJobs`, `avgMatchRate`, `companiesResearched`, `jobsThisWeek`
 - Dashboard page runs a single `jobs` query (match_score, company_research, found_at) and derives all 4 stats server-side
 
 Feature 16 — Recent Activity Real Data:
+
 - `RecentActivity` refactored to accept `items` prop; empty state added
 - Dashboard page fetches `agent_runs` (completed, limit 10) + `jobs` where company_research IS NOT NULL (limit 10) inside the existing `Promise.all`
 - Merges, sorts by timestamp desc, slices to 10
@@ -43,6 +46,7 @@ Feature 16 — Recent Activity Real Data:
 ## Next session starts with
 
 Run `/remember restore`, then implement Feature 17 — Analytics Charts with PostHog Data. Build plan says:
+
 - Jobs Found Over Time → PostHog `job_found` events, last 30 days, group by day
 - Match Score Distribution → PostHog `job_found` events, extract `matchScore` property, group into ranges 50-60, 60-70, 70-80, 80-90, 90-100
 - Company Research Activity → PostHog `company_researched` events, last 7 days, group by day

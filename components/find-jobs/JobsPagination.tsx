@@ -9,7 +9,12 @@ type Props = {
   onPageChange: (page: number) => void;
 };
 
-export function JobsPagination({ currentPage, totalCount, pageSize, onPageChange }: Props) {
+export function JobsPagination({
+  currentPage,
+  totalCount,
+  pageSize,
+  onPageChange,
+}: Props) {
   const totalPages = Math.ceil(totalCount / pageSize);
   const from = (currentPage - 1) * pageSize + 1;
   const to = Math.min(currentPage * pageSize, totalCount);
@@ -45,7 +50,8 @@ export function JobsPagination({ currentPage, totalCount, pageSize, onPageChange
       <p className="text-sm text-text-muted">
         Showing <span className="font-medium text-text-primary">{from}</span> to{" "}
         <span className="font-medium text-text-primary">{to}</span> of{" "}
-        <span className="font-medium text-text-primary">{totalCount}</span> results
+        <span className="font-medium text-text-primary">{totalCount}</span>{" "}
+        results
       </p>
 
       <div className="flex items-center gap-1">

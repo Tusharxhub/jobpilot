@@ -11,7 +11,8 @@ function getPostHogKey(): string | undefined {
 
 export function initPostHog(): void {
   const key = getPostHogKey();
-  const host = process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com";
+  const host =
+    process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com";
 
   if (!key || typeof window === "undefined") {
     return;

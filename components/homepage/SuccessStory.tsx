@@ -23,7 +23,9 @@ export function SuccessStory() {
             className="h-12 w-12 rounded-full border border-border"
           />
           <div className="text-left">
-            <p className="text-sm font-semibold text-text-primary">Tom Wilson</p>
+            <p className="text-sm font-semibold text-text-primary">
+              Tom Wilson
+            </p>
             <p className="text-sm text-text-secondary">Junior Developer</p>
           </div>
         </div>

@@ -130,8 +130,14 @@ export async function saveProfile(
     }
 
     if (!updated) {
-      console.error("[actions/profile] saveProfile no row matched for user", user.id);
-      return { success: false, error: "Profile not found. Please sign out and sign in again." };
+      console.error(
+        "[actions/profile] saveProfile no row matched for user",
+        user.id,
+      );
+      return {
+        success: false,
+        error: "Profile not found. Please sign out and sign in again.",
+      };
     }
 
     if (isComplete && !existing?.is_complete) {

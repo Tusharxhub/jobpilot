@@ -34,18 +34,56 @@ const defaultWorkEntry = (): WorkExperienceEntry => ({
 });
 
 const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 const CURRENT_YEAR = new Date().getFullYear();
 const YEARS = Array.from({ length: 40 }, (_, i) => String(CURRENT_YEAR - i));
 
-const EXPERIENCE_LEVELS = ["Junior", "Mid-Level", "Senior", "Lead", "Manager", "Director", "Executive"];
-const WORK_AUTH_OPTIONS = ["Citizen", "Permanent Resident", "Work Visa (H1B)", "Work Visa (Other)", "Student Visa (OPT/CPT)", "Requires Sponsorship"];
-const DEGREE_OPTIONS = ["High School", "Associate's", "Bachelor's", "Master's", "Ph.D.", "MBA", "Bootcamp / Certificate"];
+const EXPERIENCE_LEVELS = [
+  "Junior",
+  "Mid-Level",
+  "Senior",
+  "Lead",
+  "Manager",
+  "Director",
+  "Executive",
+];
+const WORK_AUTH_OPTIONS = [
+  "Citizen",
+  "Permanent Resident",
+  "Work Visa (H1B)",
+  "Work Visa (Other)",
+  "Student Visa (OPT/CPT)",
+  "Requires Sponsorship",
+];
+const DEGREE_OPTIONS = [
+  "High School",
+  "Associate's",
+  "Bachelor's",
+  "Master's",
+  "Ph.D.",
+  "MBA",
+  "Bootcamp / Certificate",
+];
 const REMOTE_OPTIONS = ["Any", "Remote Only", "Hybrid", "On-site"];
-const TONE_OPTIONS = ["Professional", "Conversational", "Enthusiastic", "Concise"];
+const TONE_OPTIONS = [
+  "Professional",
+  "Conversational",
+  "Enthusiastic",
+  "Concise",
+];
 
 function FormLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -249,17 +287,25 @@ export function ProfileForm({ profile, formRef }: Props) {
   const [phone, setPhone] = useState(profile?.phone ?? "");
   const [location, setLocation] = useState(profile?.location ?? "");
   const [linkedinUrl, setLinkedinUrl] = useState(profile?.linkedin_url ?? "");
-  const [portfolioUrl, setPortfolioUrl] = useState(profile?.portfolio_url ?? "");
+  const [portfolioUrl, setPortfolioUrl] = useState(
+    profile?.portfolio_url ?? "",
+  );
   const [workAuth, setWorkAuth] = useState(profile?.work_authorization ?? "");
 
   // Professional Info
-  const [currentTitle, setCurrentTitle] = useState(profile?.current_title ?? "");
-  const [experienceLevel, setExperienceLevel] = useState(profile?.experience_level ?? "");
+  const [currentTitle, setCurrentTitle] = useState(
+    profile?.current_title ?? "",
+  );
+  const [experienceLevel, setExperienceLevel] = useState(
+    profile?.experience_level ?? "",
+  );
   const [yearsExperience, setYearsExperience] = useState(
     profile?.years_experience != null ? String(profile.years_experience) : "",
   );
   const [skills, setSkills] = useState<string[]>(profile?.skills ?? []);
-  const [industries, setIndustries] = useState<string[]>(profile?.industries ?? []);
+  const [industries, setIndustries] = useState<string[]>(
+    profile?.industries ?? [],
+  );
 
   // Work Experience
   const [workEntries, setWorkEntries] = useState<WorkExperienceEntry[]>(
@@ -275,20 +321,32 @@ export function ProfileForm({ profile, formRef }: Props) {
 
   // Education
   const [degree, setDegree] = useState(profile?.education?.degree ?? "");
-  const [fieldOfStudy, setFieldOfStudy] = useState(profile?.education?.field ?? "");
-  const [institution, setInstitution] = useState(profile?.education?.institution ?? "");
-  const [graduationYear, setGraduationYear] = useState(profile?.education?.graduation_year ?? "");
+  const [fieldOfStudy, setFieldOfStudy] = useState(
+    profile?.education?.field ?? "",
+  );
+  const [institution, setInstitution] = useState(
+    profile?.education?.institution ?? "",
+  );
+  const [graduationYear, setGraduationYear] = useState(
+    profile?.education?.graduation_year ?? "",
+  );
 
   // Job Preferences
   const [jobTitlesSeeking, setJobTitlesSeeking] = useState<string[]>(
     profile?.job_titles_seeking ?? [],
   );
-  const [remotePreference, setRemotePreference] = useState(profile?.remote_preference ?? "");
-  const [salaryExpectation, setSalaryExpectation] = useState(profile?.salary_expectation ?? "");
+  const [remotePreference, setRemotePreference] = useState(
+    profile?.remote_preference ?? "",
+  );
+  const [salaryExpectation, setSalaryExpectation] = useState(
+    profile?.salary_expectation ?? "",
+  );
   const [preferredLocations, setPreferredLocations] = useState<string[]>(
     profile?.preferred_locations ?? [],
   );
-  const [coverLetterTone, setCoverLetterTone] = useState(profile?.cover_letter_tone ?? "");
+  const [coverLetterTone, setCoverLetterTone] = useState(
+    profile?.cover_letter_tone ?? "",
+  );
 
   useImperativeHandle(formRef, () => ({
     applyExtracted(data: ExtractedProfile) {
@@ -317,7 +375,8 @@ export function ProfileForm({ profile, formRef }: Props) {
       if (data.education) {
         if (data.education.degree) setDegree(data.education.degree);
         if (data.education.field) setFieldOfStudy(data.education.field);
-        if (data.education.institution) setInstitution(data.education.institution);
+        if (data.education.institution)
+          setInstitution(data.education.institution);
         if (data.education.graduation_year)
           setGraduationYear(data.education.graduation_year);
       }
@@ -332,7 +391,9 @@ export function ProfileForm({ profile, formRef }: Props) {
     value: WorkExperienceEntry[K],
   ) {
     setWorkEntries((prev) =>
-      prev.map((entry, i) => (i === index ? { ...entry, [key]: value } : entry)),
+      prev.map((entry, i) =>
+        i === index ? { ...entry, [key]: value } : entry,
+      ),
     );
   }
 
@@ -390,7 +451,8 @@ export function ProfileForm({ profile, formRef }: Props) {
             Profile Information
           </h2>
           <p className="mt-0.5 text-sm text-text-secondary">
-            Your profile information directly represents you in agent interactions.
+            Your profile information directly represents you in agent
+            interactions.
           </p>
         </div>
 
@@ -496,7 +558,9 @@ export function ProfileForm({ profile, formRef }: Props) {
                 <TagInput
                   tags={skills}
                   onAdd={(tag) => setSkills((prev) => [...prev, tag])}
-                  onRemove={(tag) => setSkills((prev) => prev.filter((s) => s !== tag))}
+                  onRemove={(tag) =>
+                    setSkills((prev) => prev.filter((s) => s !== tag))
+                  }
                   placeholder="e.g. React, TypeScript"
                 />
               </div>
@@ -505,7 +569,9 @@ export function ProfileForm({ profile, formRef }: Props) {
                 <TagInput
                   tags={industries}
                   onAdd={(tag) => setIndustries((prev) => [...prev, tag])}
-                  onRemove={(tag) => setIndustries((prev) => prev.filter((i) => i !== tag))}
+                  onRemove={(tag) =>
+                    setIndustries((prev) => prev.filter((i) => i !== tag))
+                  }
                   placeholder="e.g. FinTech, Healthcare"
                 />
               </div>
@@ -567,7 +633,9 @@ export function ProfileForm({ profile, formRef }: Props) {
                       <FormLabel>Start Date</FormLabel>
                       <MonthYearSelect
                         value={entry.start_date}
-                        onChange={(v) => updateWorkEntry(index, "start_date", v)}
+                        onChange={(v) =>
+                          updateWorkEntry(index, "start_date", v)
+                        }
                       />
                     </div>
                     <div>
@@ -578,7 +646,11 @@ export function ProfileForm({ profile, formRef }: Props) {
                             type="checkbox"
                             checked={entry.is_current}
                             onChange={(e) =>
-                              updateWorkEntry(index, "is_current", e.target.checked)
+                              updateWorkEntry(
+                                index,
+                                "is_current",
+                                e.target.checked,
+                              )
                             }
                             className="accent-accent"
                           />
@@ -597,7 +669,11 @@ export function ProfileForm({ profile, formRef }: Props) {
                         placeholder="Describe your key responsibilities..."
                         value={entry.responsibilities}
                         onChange={(e) =>
-                          updateWorkEntry(index, "responsibilities", e.target.value)
+                          updateWorkEntry(
+                            index,
+                            "responsibilities",
+                            e.target.value,
+                          )
                         }
                         rows={3}
                         className="w-full resize-none rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-accent"
@@ -698,9 +774,13 @@ export function ProfileForm({ profile, formRef }: Props) {
                 <FormLabel>Preferred Locations (Optional)</FormLabel>
                 <TagInput
                   tags={preferredLocations}
-                  onAdd={(tag) => setPreferredLocations((prev) => [...prev, tag])}
+                  onAdd={(tag) =>
+                    setPreferredLocations((prev) => [...prev, tag])
+                  }
                   onRemove={(tag) =>
-                    setPreferredLocations((prev) => prev.filter((l) => l !== tag))
+                    setPreferredLocations((prev) =>
+                      prev.filter((l) => l !== tag),
+                    )
                   }
                   placeholder="e.g. New York, London"
                 />

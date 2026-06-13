@@ -30,13 +30,14 @@ export async function GET(req: NextRequest) {
     }
 
     if (search) {
-      query = query.or(
-        `title.ilike.%${search}%,company.ilike.%${search}%`,
-      );
+      query = query.or(`title.ilike.%${search}%,company.ilike.%${search}%`);
     }
 
     if (sortOption === "score") {
-      query = query.order("match_score", { ascending: false, nullsFirst: false });
+      query = query.order("match_score", {
+        ascending: false,
+        nullsFirst: false,
+      });
     } else if (sortOption === "newest") {
       query = query.order("found_at", { ascending: false });
     } else if (sortOption === "oldest") {

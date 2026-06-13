@@ -66,7 +66,8 @@
   --radius-xl: 16px;
   --radius-full: 9999px;
 
-  --shadow-card: 0px 1px 3px rgb(0 0 0 / 0.1), 0px 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-card:
+    0px 1px 3px rgb(0 0 0 / 0.1), 0px 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 
 :root {
@@ -188,13 +189,19 @@ body {
 }
 
 .landing-button-primary {
-  border: 1px solid color-mix(in srgb, var(--color-overlay) 86%, var(--color-accent) 14%);
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-text-darker) 84%, var(--color-overlay-dark) 16%) 0%,
-      color-mix(in srgb, var(--color-overlay-dark) 92%, var(--color-overlay) 8%) 100%
-    );
+  border: 1px solid
+    color-mix(in srgb, var(--color-overlay) 86%, var(--color-accent) 14%);
+  background: linear-gradient(
+    180deg,
+    color-mix(
+        in srgb,
+        var(--color-text-darker) 84%,
+        var(--color-overlay-dark) 16%
+      )
+      0%,
+    color-mix(in srgb, var(--color-overlay-dark) 92%, var(--color-overlay) 8%)
+      100%
+  );
   color: var(--color-accent-foreground);
   box-shadow:
     0 10px 20px color-mix(in srgb, var(--color-overlay) 10%, transparent),
@@ -203,12 +210,12 @@ body {
 
 .landing-button-primary:hover {
   transform: translateY(-2px);
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-text-black) 82%, var(--color-accent) 18%) 0%,
-      color-mix(in srgb, var(--color-overlay-dark) 82%, var(--color-accent) 18%) 100%
-    );
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-text-black) 82%, var(--color-accent) 18%) 0%,
+    color-mix(in srgb, var(--color-overlay-dark) 82%, var(--color-accent) 18%)
+      100%
+  );
   box-shadow:
     0 14px 28px color-mix(in srgb, var(--color-overlay) 16%, transparent),
     inset 0 1px 0 color-mix(in srgb, var(--color-surface) 20%, transparent);
@@ -222,7 +229,11 @@ body {
 
 .landing-button-secondary {
   border: 1px solid var(--color-border);
-  background: color-mix(in srgb, var(--color-surface) 92%, var(--color-surface-secondary) 8%);
+  background: color-mix(
+    in srgb,
+    var(--color-surface) 92%,
+    var(--color-surface-secondary) 8%
+  );
   color: var(--color-text-primary);
   box-shadow:
     0 1px 2px color-mix(in srgb, var(--color-overlay) 5%, transparent),
@@ -231,7 +242,11 @@ body {
 
 .landing-button-secondary:hover {
   background: var(--color-surface-secondary);
-  border-color: color-mix(in srgb, var(--color-border) 70%, var(--color-accent-light) 30%);
+  border-color: color-mix(
+    in srgb,
+    var(--color-border) 70%,
+    var(--color-accent-light) 30%
+  );
 }
 
 a {

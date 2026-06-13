@@ -20,10 +20,26 @@ export function StatsBar({
   jobsThisWeek,
 }: Props) {
   const stats: StatCard[] = [
-    { label: "Total Jobs Found", value: String(totalJobs), trendLabel: "vs last week" },
-    { label: "Avg. Match Rate", value: `${avgMatchRate}%`, trendLabel: "vs last week" },
-    { label: "Companies Researched", value: String(companiesResearched), trendLabel: "Total researched" },
-    { label: "Jobs This Week", value: String(jobsThisWeek), trendLabel: "New this week" },
+    {
+      label: "Total Jobs Found",
+      value: String(totalJobs),
+      trendLabel: "vs last week",
+    },
+    {
+      label: "Avg. Match Rate",
+      value: `${avgMatchRate}%`,
+      trendLabel: "vs last week",
+    },
+    {
+      label: "Companies Researched",
+      value: String(companiesResearched),
+      trendLabel: "Total researched",
+    },
+    {
+      label: "Jobs This Week",
+      value: String(jobsThisWeek),
+      trendLabel: "New this week",
+    },
   ];
 
   return (
@@ -33,7 +49,9 @@ export function StatsBar({
           key={stat.label}
           className="rounded-2xl border border-border bg-surface p-6 shadow-card"
         >
-          <p className="text-sm font-medium text-text-secondary">{stat.label}</p>
+          <p className="text-sm font-medium text-text-secondary">
+            {stat.label}
+          </p>
           <p className="mt-2 text-3xl font-semibold leading-9 text-text-primary">
             {stat.value}
           </p>

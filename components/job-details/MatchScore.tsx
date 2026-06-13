@@ -29,7 +29,11 @@ function SkillBadge({
   );
 }
 
-export function MatchScore({ matchReason, matchedSkills, missingSkills }: Props) {
+export function MatchScore({
+  matchReason,
+  matchedSkills,
+  missingSkills,
+}: Props) {
   return (
     <>
       <section className="rounded-2xl border border-border bg-surface p-6 shadow-card">
@@ -53,7 +57,9 @@ export function MatchScore({ matchReason, matchedSkills, missingSkills }: Props)
 
         <div className="mt-5 flex flex-col gap-4">
           <div>
-            <p className="mb-2 text-xs font-medium leading-4 text-text-muted">You have</p>
+            <p className="mb-2 text-xs font-medium leading-4 text-text-muted">
+              You have
+            </p>
             {matchedSkills.length > 0 ? (
               <div className="flex flex-wrap gap-2">
                 {matchedSkills.map((skill) => (
@@ -61,12 +67,16 @@ export function MatchScore({ matchReason, matchedSkills, missingSkills }: Props)
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-text-muted">No matched skills were recorded.</p>
+              <p className="text-sm text-text-muted">
+                No matched skills were recorded.
+              </p>
             )}
           </div>
 
           <div>
-            <p className="mb-2 text-xs font-medium leading-4 text-text-muted">Gap skills</p>
+            <p className="mb-2 text-xs font-medium leading-4 text-text-muted">
+              Gap skills
+            </p>
             {missingSkills.length > 0 ? (
               <div className="flex flex-wrap gap-2">
                 {missingSkills.map((skill) => (
@@ -74,7 +84,9 @@ export function MatchScore({ matchReason, matchedSkills, missingSkills }: Props)
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-text-muted">No gap skills were recorded.</p>
+              <p className="text-sm text-text-muted">
+                No gap skills were recorded.
+              </p>
             )}
           </div>
         </div>

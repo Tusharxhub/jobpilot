@@ -74,7 +74,8 @@ export function JobDescription({
       {shouldShowFullPostLink && (
         <div className="mt-6 rounded-lg border border-border bg-surface-secondary p-4">
           <p className="text-sm leading-6 text-text-secondary">
-            This job board provided a preview that ends mid-sentence. Open the original listing to read the full description.
+            This job board provided a preview that ends mid-sentence. Open the
+            original listing to read the full description.
           </p>
           <Link
             href={sourceUrl}

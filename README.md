@@ -33,4 +33,3 @@ JobPilot is an AI-powered job hunting assistant built with Next.js. It helps use
 - npm run build — create a production build
 - npm run start — run the production build
 - npm run lint — run ESLint
-

@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { Building2 } from "lucide-react";
 
-import { getMatchScoreColor, getMatchScoreTextColor, formatDate } from "@/lib/utils";
+import {
+  getMatchScoreColor,
+  getMatchScoreTextColor,
+  formatDate,
+} from "@/lib/utils";
 import type { Job } from "@/types";
 
 type Props = {
@@ -49,14 +53,18 @@ export function JobsTable({ jobs, isLoading = false }: Props) {
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-secondary">
             <Building2 className="h-6 w-6 text-text-muted" />
           </div>
-          <p className="text-sm text-text-muted">No jobs found yet. Run a search to get started.</p>
+          <p className="text-sm text-text-muted">
+            No jobs found yet. Run a search to get started.
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className={`rounded-2xl border border-border bg-surface shadow-[0px_1px_3px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] overflow-hidden transition-opacity ${isLoading ? "opacity-60" : "opacity-100"}`}>
+    <div
+      className={`rounded-2xl border border-border bg-surface shadow-[0px_1px_3px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] overflow-hidden transition-opacity ${isLoading ? "opacity-60" : "opacity-100"}`}
+    >
       <table className="w-full">
         <thead>
           <tr className="border-b border-border">
@@ -89,7 +97,10 @@ export function JobsTable({ jobs, isLoading = false }: Props) {
               }`}
             >
               <td className="px-6 py-4">
-                <Link href={`/find-jobs/${job.id}`} className="flex items-center gap-3">
+                <Link
+                  href={`/find-jobs/${job.id}`}
+                  className="flex items-center gap-3"
+                >
                   <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-border bg-surface-secondary">
                     <Building2 className="h-4 w-4 text-text-muted" />
                   </div>
@@ -100,7 +111,9 @@ export function JobsTable({ jobs, isLoading = false }: Props) {
               </td>
               <td className="px-6 py-4">
                 <Link href={`/find-jobs/${job.id}`} className="block">
-                  <span className="text-sm text-text-primary">{job.title ?? "—"}</span>
+                  <span className="text-sm text-text-primary">
+                    {job.title ?? "—"}
+                  </span>
                 </Link>
               </td>
               <td className="px-6 py-4">
@@ -114,7 +127,9 @@ export function JobsTable({ jobs, isLoading = false }: Props) {
               </td>
               <td className="px-6 py-4">
                 <Link href={`/find-jobs/${job.id}`} className="block">
-                  <span className="text-sm text-text-primary">{job.salary ?? "—"}</span>
+                  <span className="text-sm text-text-primary">
+                    {job.salary ?? "—"}
+                  </span>
                 </Link>
               </td>
               <td className="hidden px-6 py-4 sm:table-cell">
@@ -124,7 +139,9 @@ export function JobsTable({ jobs, isLoading = false }: Props) {
               </td>
               <td className="px-6 py-4">
                 <Link href={`/find-jobs/${job.id}`} className="block">
-                  <span className="text-sm text-text-muted">{formatDate(job.found_at)}</span>
+                  <span className="text-sm text-text-muted">
+                    {formatDate(job.found_at)}
+                  </span>
                 </Link>
               </td>
             </tr>

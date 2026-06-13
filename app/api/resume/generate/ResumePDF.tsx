@@ -98,8 +98,12 @@ const styles = StyleSheet.create({
 
 export function ResumePDF({ profile, generated }: Props) {
   const contactParts = [profile.email, profile.phone].filter(Boolean);
-  const linkParts = [profile.linkedin_url, profile.portfolio_url].filter(Boolean);
-  const subtitleParts = [profile.current_title, profile.location].filter(Boolean);
+  const linkParts = [profile.linkedin_url, profile.portfolio_url].filter(
+    Boolean,
+  );
+  const subtitleParts = [profile.current_title, profile.location].filter(
+    Boolean,
+  );
 
   return (
     <Document>
@@ -130,7 +134,9 @@ export function ResumePDF({ profile, generated }: Props) {
         {profile.skills?.length > 0 ? (
           <View>
             <Text style={styles.sectionTitle}>Skills</Text>
-            <Text style={styles.skillsText}>{profile.skills.join("  •  ")}</Text>
+            <Text style={styles.skillsText}>
+              {profile.skills.join("  •  ")}
+            </Text>
           </View>
         ) : null}
 
@@ -168,7 +174,10 @@ export function ResumePDF({ profile, generated }: Props) {
               {profile.education.field ? ` in ${profile.education.field}` : ""}
             </Text>
             <Text style={styles.eduDetails}>
-              {[profile.education.institution, profile.education.graduation_year]
+              {[
+                profile.education.institution,
+                profile.education.graduation_year,
+              ]
                 .filter(Boolean)
                 .join("  •  ")}
             </Text>

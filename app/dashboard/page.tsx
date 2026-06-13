@@ -35,7 +35,13 @@ type ResearchedJobRow = {
 
 const DAYS_ORDER = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
 const DAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
-const MATCH_BUCKETS = ["50-60%", "60-70%", "70-80%", "80-90%", "90-100%"] as const;
+const MATCH_BUCKETS = [
+  "50-60%",
+  "60-70%",
+  "70-80%",
+  "80-90%",
+  "90-100%",
+] as const;
 
 export default async function DashboardPage() {
   const user = await requireUser();
@@ -45,45 +51,55 @@ export default async function DashboardPage() {
   weekAgo.setDate(weekAgo.getDate() - 7);
   weekAgo.setHours(0, 0, 0, 0);
 
-  const [{ data: profile }, { data: jobRows }, { data: agentRuns }, { data: researchedJobs }] =
-    await Promise.all([
-      insforge.database
-        .from("profiles")
-        .select("*")
-        .eq("id", user.id)
-        .maybeSingle<Profile>(),
-      insforge.database
-        .from("jobs")
-        .select("match_score, company_research, found_at")
-        .eq("user_id", user.id)
-        .returns<JobStatsRow[]>(),
-      insforge.database
-        .from("agent_runs")
-        .select("id, job_title_searched, jobs_found, completed_at")
-        .eq("user_id", user.id)
-        .eq("status", "completed")
-        .order("completed_at", { ascending: false })
-        .limit(10)
-        .returns<AgentRunRow[]>(),
-      insforge.database
-        .from("jobs")
-        .select("id, company, found_at")
-        .eq("user_id", user.id)
-        .not("company_research", "is", null)
-        .order("found_at", { ascending: false })
-        .limit(10)
-        .returns<ResearchedJobRow[]>(),
-    ]);
+  const [
+    { data: profile },
+    { data: jobRows },
+    { data: agentRuns },
+    { data: researchedJobs },
+  ] = await Promise.all([
+    insforge.database
+      .from("profiles")
+      .select("*")
+      .eq("id", user.id)
+      .maybeSingle<Profile>(),
+    insforge.database
+      .from("jobs")
+      .select("match_score, company_research, found_at")
+      .eq("user_id", user.id)
+      .returns<JobStatsRow[]>(),
+    insforge.database
+      .from("agent_runs")
+      .select("id, job_title_searched, jobs_found, completed_at")
+      .eq("user_id", user.id)
+      .eq("status", "completed")
+      .order("completed_at", { ascending: false })
+      .limit(10)
+      .returns<AgentRunRow[]>(),
+    insforge.database
+      .from("jobs")
+      .select("id, company, found_at")
+      .eq("user_id", user.id)
+      .not("company_research", "is", null)
+      .order("found_at", { ascending: false })
+      .limit(10)
+      .returns<ResearchedJobRow[]>(),
+  ]);
 
   // Stats
   const jobs = jobRows ?? [];
   const totalJobs = jobs.length;
   const avgMatchRate =
     totalJobs > 0
-      ? Math.round(jobs.reduce((sum, j) => sum + (j.match_score ?? 0), 0) / totalJobs)
+      ? Math.round(
+          jobs.reduce((sum, j) => sum + (j.match_score ?? 0), 0) / totalJobs,
+        )
       : 0;
-  const companiesResearched = jobs.filter((j) => j.company_research !== null).length;
-  const jobsThisWeek = jobs.filter((j) => new Date(j.found_at) >= weekAgo).length;
+  const companiesResearched = jobs.filter(
+    (j) => j.company_research !== null,
+  ).length;
+  const jobsThisWeek = jobs.filter(
+    (j) => new Date(j.found_at) >= weekAgo,
+  ).length;
 
   // Recent activity — merge agent_runs + researched jobs, sort by time, take top 10
   type ActivityItem = {
@@ -128,7 +144,10 @@ export default async function DashboardPage() {
       jobsByDay[label] = (jobsByDay[label] ?? 0) + 1;
     }
   }
-  const jobsOverTimeData = DAYS_ORDER.map((d) => ({ day: d, count: jobsByDay[d] ?? 0 }));
+  const jobsOverTimeData = DAYS_ORDER.map((d) => ({
+    day: d,
+    count: jobsByDay[d] ?? 0,
+  }));
 
   // Company research activity per day of week (last 7 days)
   const researchByDay: Record<string, number> = {};
@@ -141,7 +160,10 @@ export default async function DashboardPage() {
       }
     }
   }
-  const researchActivityData = DAYS_ORDER.map((d) => ({ day: d, count: researchByDay[d] ?? 0 }));
+  const researchActivityData = DAYS_ORDER.map((d) => ({
+    day: d,
+    count: researchByDay[d] ?? 0,
+  }));
 
   // Match score distribution (all time, scores >= 50)
   const matchCounts: Record<string, number> = {};
@@ -160,7 +182,10 @@ export default async function DashboardPage() {
               : "50-60%";
     matchCounts[bucket] = (matchCounts[bucket] ?? 0) + 1;
   }
-  const matchDistributionData = MATCH_BUCKETS.map((r) => ({ range: r, count: matchCounts[r] ?? 0 }));
+  const matchDistributionData = MATCH_BUCKETS.map((r) => ({
+    range: r,
+    count: matchCounts[r] ?? 0,
+  }));
 
   // Profile completion
   const { completionPercent, missingFields } = calculateCompletion(

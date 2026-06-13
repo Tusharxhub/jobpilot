@@ -13,17 +13,11 @@ export function CTASection() {
             in minutes.
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              href="/login"
-              className="landing-button-primary"
-            >
+            <Link href="/login" className="landing-button-primary">
               Get Started
               <span className="ml-2 text-xs">{">"}</span>
             </Link>
-            <Link
-              href="/login"
-              className="landing-button-secondary"
-            >
+            <Link href="/login" className="landing-button-secondary">
               Find Your First Match
             </Link>
           </div>

@@ -38,7 +38,9 @@ export function LoginCard({ error }: Props) {
 
         <div className="flex flex-col justify-center p-8 sm:p-10">
           <div>
-            <p className="text-sm font-medium text-text-secondary">Welcome to</p>
+            <p className="text-sm font-medium text-text-secondary">
+              Welcome to
+            </p>
             <h2 className="mt-2 text-3xl font-semibold leading-9 text-text-primary">
               JobPilot
             </h2>

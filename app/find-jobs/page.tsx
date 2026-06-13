@@ -26,7 +26,10 @@ export default async function FindJobsPage() {
       <PostHogIdentify userId={user.id} />
       <Navbar isAuthenticated />
       <main className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-[1440px] flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8">
-        <FindJobsClient initialJobs={initialJobs} initialTotalCount={initialTotalCount} />
+        <FindJobsClient
+          initialJobs={initialJobs}
+          initialTotalCount={initialTotalCount}
+        />
       </main>
     </>
   );

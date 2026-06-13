@@ -189,11 +189,11 @@ export function ResumeSection({ existingResumeUrl, onExtracted }: Props) {
         </button>
       </div>
 
-      {uploadError && (
-        <p className="mt-2 text-sm text-error">{uploadError}</p>
-      )}
+      {uploadError && <p className="mt-2 text-sm text-error">{uploadError}</p>}
       {uploadSuccess && (
-        <p className="mt-2 text-sm text-success">Resume uploaded successfully.</p>
+        <p className="mt-2 text-sm text-success">
+          Resume uploaded successfully.
+        </p>
       )}
 
       <div className="mt-4 flex flex-col gap-3">
@@ -234,9 +234,7 @@ export function ResumeSection({ existingResumeUrl, onExtracted }: Props) {
           </div>
         )}
 
-        {extractError && (
-          <p className="text-sm text-error">{extractError}</p>
-        )}
+        {extractError && <p className="text-sm text-error">{extractError}</p>}
         {extractSuccess && (
           <p className="text-sm text-success">
             Profile fields filled in. Review and save below.
@@ -279,11 +277,11 @@ export function ResumeSection({ existingResumeUrl, onExtracted }: Props) {
           </button>
         </div>
 
-        {generateError && (
-          <p className="text-sm text-error">{generateError}</p>
-        )}
+        {generateError && <p className="text-sm text-error">{generateError}</p>}
         {generateSuccess && (
-          <p className="text-sm text-success">Resume generated and downloaded.</p>
+          <p className="text-sm text-success">
+            Resume generated and downloaded.
+          </p>
         )}
       </div>
     </section>

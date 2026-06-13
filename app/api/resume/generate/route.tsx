@@ -114,7 +114,9 @@ ${profileContext}`,
     }
 
     // Render PDF buffer server-side
-    const buffer = await renderToBuffer(createResumeDocument(profile, generated));
+    const buffer = await renderToBuffer(
+      createResumeDocument(profile, generated),
+    );
 
     // Remove existing file then upload fresh (SDK has no upsert — matches actions/profile.ts pattern)
     const path = `${user.id}/resume.pdf`;

@@ -141,7 +141,10 @@ function fallbackHomepageUrl(companyName: string | null): string {
 }
 
 function getRootDomain(hostname: string): string {
-  const parts = hostname.replace(/^www\./, "").split(".").filter(Boolean);
+  const parts = hostname
+    .replace(/^www\./, "")
+    .split(".")
+    .filter(Boolean);
   if (parts.length <= 2) {
     return parts.join(".");
   }
@@ -214,11 +217,7 @@ async function resolveHomepageUrl(
       });
 
       const location = getHeaderValue(response.headers, "location");
-      if (
-        response.statusCode >= 300 &&
-        response.statusCode < 400 &&
-        location
-      ) {
+      if (response.statusCode >= 300 && response.statusCode < 400 && location) {
         currentUrl = new URL(location, currentUrl).toString();
         continue;
       }
@@ -247,7 +246,9 @@ function normalizeInternalUrl(url: string, homepageUrl: string): string | null {
   try {
     const normalized = new URL(url, homepageUrl);
     const homepage = new URL(homepageUrl);
-    if (getRootDomain(normalized.hostname) !== getRootDomain(homepage.hostname)) {
+    if (
+      getRootDomain(normalized.hostname) !== getRootDomain(homepage.hostname)
+    ) {
       return null;
     }
 
@@ -258,7 +259,14 @@ function normalizeInternalUrl(url: string, homepageUrl: string): string | null {
 }
 
 function rankPageKind(kind: string): number {
-  const priority = ["about", "blog", "engineering", "product", "team", "careers"];
+  const priority = [
+    "about",
+    "blog",
+    "engineering",
+    "product",
+    "team",
+    "careers",
+  ];
   const index = priority.indexOf(kind);
   return index === -1 ? priority.length : index;
 }

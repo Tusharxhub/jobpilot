@@ -27,7 +27,9 @@ export async function requireUser() {
   return user;
 }
 
-export async function getPostLoginRedirectPath(userId: string): Promise<string> {
+export async function getPostLoginRedirectPath(
+  userId: string,
+): Promise<string> {
   const insforge = await createInsforgeServer();
   const { data, error } = await insforge.database
     .from("profiles")
